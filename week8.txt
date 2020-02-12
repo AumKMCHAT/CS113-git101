@@ -1,0 +1,39 @@
+git hub
+วิธีการ push file ขึ้นgit
+Initialize git repository ใช้ git init directory ชื่อ .git แต่เป็น hidden file
+
+git status ตรวจสอบสถานะของไฟล์ทุกครั้ง เมื่อมีการสร้างไฟล์ใหม่ หรือไฟล์เดิมมีการแก้ไข หรือไฟล์ถูกลบ
+
+git add เพิ่มไฟล์เข้า staging area เพื่อพร้อมจะ commit
+    git config user.name "Your Name"
+	git config user.email "yourmail@ku.th"
+
+git commit -m "Add a.txt" Commit ไฟล์ เพื่อเก็บ Version/Snapshot/Checkpoint (แล้วแต่จะเรียก) ของไฟล์
+
+อย่าลืม check status ของไฟล์ git status
+
+ดู Checkpoint ทั้งหมด ด้วย git log adog
+	git log --all --decorate --oneline --graph
+
+สร้าง repository ใหม่ บน github
+
+เชื่อม local repository (git repo ในเครื่องเรา) กับ github ด้วยคำสั่ง 
+git remote add <ชื่อ remote เช่น origin> <git url>
+
+เมื่อเชื่อม local ในเครื่อง กับ remote ที่ github ได้แล้ว ให้ส่งไฟล์และประวัติไปเก็บที่ github ด้วยคำสั่ง git push
+	git push -u origin master
+
+ตรวจสอบใน github ว่ามีไฟล์ขึ้นมาครบหรือไม่
+ตรวจสอบว่ามี Checkpoint เท่ากันกับในเครื่องของเราหรือไม่
+และตรวจสอบว่าแต่ละ Checkpoint มี commit id ตรงกับในเครื่องของเราหรือไม่
+
+ตรวจสอบ Checkpoint ทั้งหมดในเครื่องของเรา จะเห็นว่า Checkpoint ของเราได้ถูกเก็บไว้ที่ origin/master
+git log --all --decorate --oneline --graph
+
+ประโยชน์อย่างหนึ่งของการใช้ git คือ สามารถนำ Checkpoint เก่ากลับมาทำงานได้ โดยทำได้ 2 แบบคือ
+
+กลับมาทั้งหมด
+	git checkout <commit-id>
+
+push ขึ้นไปที่ server github อีกครั้ง ด้วยคำสั่ง
+	git push
