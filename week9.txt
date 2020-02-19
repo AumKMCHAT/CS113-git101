@@ -1,0 +1,45 @@
+การสร้าง branch แยก
+ใช้คำสั่ง git branch <ชื่อ>
+git checkout <ชื่อ> เปลี่ยนไปททำงานใน branch นั้น
+และ commit flie ตามปกติ แต่ว่าจะแยก branch กันกับ master จนกว่าจะ Merge Branch
+ใช้ git log adog ดู Checkpoint ทั้งหมด
+ ลอง merge โดยให้ งานใน feature ไปรวมกันใน master
+     เปลี่ยนไปที่ Branch ปลายทางก่อน (master)
+	git checkout master
+     รวม Branch (merge) feature ให้ไปอยู่ใน master
+	git merge feature
+
+Pull แบบไม่มี conflict
+ให้ clone git repository มาไว้อีกเครื่องหนึ่ง หรือ directory ใหม่ เช่น git102
+	cd ..
+git clone <git-url> git102
+	cd git102
+
+การ Merge แบบมี Conflict
+	Conflict หรือความขัดแย้ง เกิดจากการปรับแก้ไขข้อมูลในไฟล์เดิม บรรทัดเดิม ที่อยู่ต่าง Branch กัน
+เมื่อ merge แล้ว git ตัดสินใจไม่ได้ว่าจะใช้ข้อมูลจาก branch ใด
+    หาก Editor มี tool ที่ช่วยจัดการ conflict เช่น Atom สามารถเลือกว่าจะใช้ข้อมูลจาก branch ใด
+    หาก Editor ไม่มี tool ช่วย เช่น sublime ต้อง เพิ่ม/แก้/ลบ เอง
+หลังจากแก้ไข conflict เสร็จแล้ว ให้ commit การ merge นั้น
+
+การ Pull แบบมี Conflict
+มีการแก้ไขบรรทัดเดียวกัน คนละ branch
+ก่อน Push ให้ Pull origin/master จะพบว่าการ Pull นี้ มี conflict เกิดขึ้น
+      ให้แก้ไข conflict ในไฟล์ new-1.txt จากนั้นสร้าง commit แล้ว push ไปที่ github
+	$ git pull origin master
+    $ git status
+	… แก้ไข conflict ในไฟล์ new-1.txt
+	$ git add new-1.txt
+	$ git status
+	$ git commit -m "merge and resolve conflict in new-1.txt"
+	$ git log --all --decorate --oneline --graph
+	$ git push origin master
+	$ git log --all --decorate --oneline --graph
+
+ที่เครื่องใหม่ หรือ directory ใหม่ จะเห็นว่า Checkpoint ตามหลัง origin/master อยู่
+	cd ..
+	cd git102
+	git log --all --decorate --oneline --graph
+       ให้ pull ลงมา สังเกตว่า ไม่เกิด conflict เพราะไม่มีการแก้ไขอะไรเพิ่มเติม
+	git pull origin master
+git log --all --decorate --oneline --graph
